@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Login">
+
+	<insert id="Add" parameterType="map">
+		INSERT INTO security.logins (username, password, logTime, ipAddress, status)
+		VALUES (#{p.username}, #{p.password}, #{p.logTime}, #{p.ipAddress}, #{p.status})
+	</insert>
+	
+	<insert id="AddLoginLog" parameterType="map">
+		INSERT INTO security.login_log (username, context, logTime, ipAddress)
+		VALUES (#{p.username}, #{p.context}, #{p.logTime}, #{p.ipAddress})
+	</insert>
+
+	<delete id="DeleteLogin" parameterType="java.lang.String">
+		DELETE FROM security.logins 
+		WHERE username = #{username}
+	</delete>
+	
+	<delete id="DeleteLoginLog" parameterType="java.lang.String">
+		DELETE FROM security.login_log 
+		WHERE username = #{username}
+	</delete>
+	
+	<select id="GetLoginByContext" resultType="Login" parameterType="map">
+		SELECT * FROM security.login_log WHERE username = #{p.username} AND context = #{p.context}
+	</select>
+	
+	<select id="GetLoginByCredentials" resultType="Login" parameterType="map">
+		SELECT * FROM security.logins WHERE username = #{p.username} AND password = #{p.password}
+	</select>
+
+</mapper>

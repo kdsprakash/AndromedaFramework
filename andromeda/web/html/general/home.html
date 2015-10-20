@@ -1,0 +1,33 @@
+<div class="wrapper amdHeader">
+	<div class="row">
+		<div class="col-md-2"><img src="/andromeda/images/logo.png" width="80" height="80" /></div>
+		<div class="col-md-9">
+			<p class="amdHeaderTitle">Andromeda Framework</p>
+			<p class="amdHeaderSubTitle">Application framework</p>
+		</div>
+		<div class="col-md-1"><div class="amdLink" onClick="Andromeda.logout();">Logout</div></div>
+	</div>
+</div>
+
+<div id="amdContentDiv" class="amdContentDiv">
+	<div class="row">
+		<div class="col-md-12">
+		Loading content...
+		</div>
+	</div>
+</div>
+
+<footer class="amdFooter">
+	<div class="row">
+		<div class="col-md-10 text-muted text-center"><small>Powered by</small> Linux, Apache Tomcat, PostgreSQL, Java, Spring, JSON, Angular, Bootstrap</div>
+		<div class="col-md-2 text-muted text-right"><small>Copyright &copy; Andromeda</small></div>
+	</div>
+</footer>
+
+<script>
+jQuery(document).ready(function() {
+	var userName = Andromeda.getSessionValue("userName") || "guest";
+	jQuery("#amdContentDiv").html("Welcome " + userName);
+	Andromeda.showModulesPage();
+});
+</script>

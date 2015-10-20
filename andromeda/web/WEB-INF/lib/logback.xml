@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appenders>
+         <!-- The main SMS Application log file -->
+         <RollingFile name="SmsAppLog" fileName="SmsApplication.log"
+            filePattern="SmsApplication.log.%i">
+            <PatternLayout charset="UTF8">
+                <Pattern>%d %-5p [%t] %X %C{2}.%M(%L) - %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 MB" />
+            </Policies>
+            <DefaultRolloverStrategy fileIndex="min" max="10" />
+            <filters>
+                <HttpsErrorFilter />
+            </filters>
+        </RollingFile>
+
+        <!--  system.out -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout charset="UTF8" pattern="%d %-5p [%t] %X %C{2}.%M(%L) - %m%n" />
+            <filters>
+                <HttpsErrorFilter />
+            </filters>
+        </Console>
+
+        <!-- The appender used for including server side log messages in the HTTP Response Headers -->
+        <Response name="Response">
+            <PatternLayout charset="UTF8" pattern="%d %-5p %C{2}.%M(%L) - %m%n"/>
+        </Response>
+    </appenders>
+    
+    <!--  appender name="fileAppender" class="ch.qos.logback.core.FileAppender">
+        <file>c:/myLogFile.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d [%thread] %-5level  %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender -->
+     
+    <root level="TRACE">
+        <appender-ref ref="SmsAppLog" />
+        <appender-ref ref="Console" />
+    </root>
+    
+</configuration>

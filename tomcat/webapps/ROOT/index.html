@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="Andromeda Framework">
+	<meta name="author" content="Prakash K">
+	
+	<title>Andromeda</title>
+	
+	<!-- Bootstrap core CSS -->
+	<link href="/andromeda/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+	<link href="/andromeda/css/bootstrap/bootstrap-theme.min.css" rel="stylesheet">
+	
+	<!-- Custom styles for this template -->
+	<link href="/andromeda/css/bootstrap/sticky-footer-navbar.css" rel="stylesheet">
+	<link href="/andromeda/css/general/andromeda.css" rel="stylesheet">
+	
+	<script src="/andromeda/scripts/lib/jquery-2.1.1.js"></script>
+	<script src="/andromeda/scripts/lib/bootstrap.min.js"></script>
+	<script src="/andromeda/scripts/lib/angular/angular.js"></script>
+	
+	<script src="/andromeda/scripts/common/formModule.js"></script>
+	<script src="/andromeda/scripts/common/Andromeda.js"></script>
+	<script src="/andromeda/scripts/common/AndromedaReports.js"></script>
+</head>
+<body>
+	<div id="amdContainerDiv" class="amdContainerDiv">
+		<script type="text/javascript">
+			jQuery(document).ready(function() {
+				if (Andromeda.isUserLoggedIn()) {
+					Andromeda.showHomePage();
+				} else {
+					Andromeda.showLoginPage();
+				}
+			});
+		</script>
+	</div>
+</body>
+</html>

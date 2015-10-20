@@ -1,0 +1,15 @@
+<!-- H2 Database connection -->
+<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+	<property name="driverClassName" value="org.h2.Driver" /> 
+	<property name="url" value="jdbc:h2:./data/sms_app.db" /> 
+	<property name="username" value="prakash" /> 
+	<property name="password" value="prakash" /> 
+</bean>
+
+<!-- PostgreSQL Database connection -->
+<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<property name="driverClassName" value="org.postgresql.Driver" />
+	<property name="url" value="jdbc:postgresql://localhost/prakash?loglevel=2" />
+	<property name="username" value="prakash" />
+	<property name="password" value="prakash" />
+</bean>
