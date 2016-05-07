@@ -28,9 +28,14 @@ var Andromeda = {
 		sessionStorage.removeItem(key);
 	},
 
+	showMessage: function(message) {
+		var message = "<div class=\"alert alert-success\"><strong>Successful: </strong>"+message+"</div>"
+		jQuery("#messageDiv").html(message);
+	},
+
 	showError: function(errorMessage) {
 		var message = "<div class=\"alert alert-danger\"><strong>Error: </strong>"+errorMessage+"</div>"
-		jQuery("#errorDiv").html(message);
+		jQuery("#messageDiv").html(message);
 	},
 
 	logout: function() {
@@ -118,10 +123,5 @@ var Andromeda = {
 		}
 
 		jQuery("#amdContentDiv").html(modulesDataString);
-	},
-	
-	showEmployeePage: function() {
-		var path = "/tiesems/html/forms/EmployeeForm.html";
-		Andromeda.showPage(path, "amdContentDiv");
 	}
 };

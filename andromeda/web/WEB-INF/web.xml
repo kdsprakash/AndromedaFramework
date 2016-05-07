@@ -53,6 +53,9 @@
 		<url-pattern>*.gif</url-pattern>
 		<url-pattern>*.js</url-pattern>
 		<url-pattern>*.css</url-pattern>
+		<url-pattern>*.ttf</url-pattern>
+		<url-pattern>*.woff2</url-pattern>
+		<url-pattern>*.woff</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>

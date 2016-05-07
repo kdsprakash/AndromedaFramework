@@ -3,10 +3,12 @@ package com.andromeda.commons.dao;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.sql.DataSource;
 
-import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -29,15 +31,28 @@ abstract public class BaseDAO
 	@Autowired
 	protected SqlSessionFactory sqlSessionFactory;
 
+	protected SqlSessionTemplate sqlSessionTemplate;
+
+	@PostConstruct
+	public void init()
+	{
+		sqlSessionTemplate = new SqlSessionTemplate(sqlSessionFactory);
+	}
+
+	@PreDestroy
+	public void destroy()
+	{
+		sqlSessionTemplate.close();
+		sqlSessionTemplate = null;
+	}
+
 	protected void add(Object object, String tableName, String sqlMap)
 	{
 		final Map<String, Object> params = new HashMap<String, Object>();
 		params.put(TABLE_NAME, tableName);
 		params.put("p", object);
 
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		int result = sqlSession.insert(sqlMap, params);
-		sqlSession.close();
+		int result = sqlSessionTemplate.insert(sqlMap, params);
 	}
 
 	protected void deleteById(String tableName, Integer id)
@@ -46,9 +61,7 @@ abstract public class BaseDAO
 		params.put(TABLE_NAME, tableName);
 		params.put("id", id);
 
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		int result = sqlSession.delete("Common.DeleteById", params);
-		sqlSession.close();
+		sqlSessionTemplate.delete("Common.DeleteById", params);
 	}
 
 	protected void deleteByColumnValue(String tableName, String columnName, String columnValue)
@@ -58,8 +71,6 @@ abstract public class BaseDAO
 		params.put("columnName", columnName);
 		params.put("columnValue", columnValue);
 
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		int result = sqlSession.delete("Common.DeleteColumnValue", params);
-		sqlSession.close();
+		sqlSessionTemplate.delete("Common.DeleteColumnValue", params);
 	}
 }

@@ -3,10 +3,10 @@ package com.andromeda.commons.defs;
 /**
  * 
  * @author Prakash K
- * @date 29-Aug-2015
+ * @date 21-Nov-2015
  *
  */
-public enum ReportColumnType
+public enum Colors
 {
-	STRING, INTEGER, DOUBLE;
+	BLUE, RED, GREEN, YELLOW, GREY;
 }

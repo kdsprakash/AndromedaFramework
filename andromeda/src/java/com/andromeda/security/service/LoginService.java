@@ -9,13 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import com.andromeda.commons.cache.model.ServerCache;
+import com.andromeda.commons.cache.service.CacheService;
 import com.andromeda.commons.model.Response;
 import com.andromeda.commons.security.dao.LoginDAO;
 import com.andromeda.commons.security.dao.UserDAO;
 import com.andromeda.commons.security.model.Login;
 import com.andromeda.commons.util.CryptoUtils;
 import com.andromeda.commons.util.IDGenerator;
-import com.andromeda.commons.util.ObjectUtils;
 
 /**
  * 
@@ -30,11 +31,17 @@ public class LoginService
 
 	private static final long SESSION_TIMEOUT = TimeUnit.MINUTES.toMillis(30);
 
+	private static final String MODULE = "SECURITY";
+	private static final String CONTEXT = "CONTEXT";
+
 	@Autowired
 	private UserDAO userDAO;
 
 	@Autowired
 	private LoginDAO loginDAO;
+
+	@Autowired
+	private CacheService cacheService;
 
 	public boolean isUserLoggedIn(Login login)
 	{
@@ -43,8 +50,8 @@ public class LoginService
 		if ((!StringUtils.isEmpty(login.getUsername()))
 				&& (!StringUtils.isEmpty(login.getContext())))
 		{
-			Login result = loginDAO.getLoginByContext(login);
-			if (result != null)
+			String context = cacheService.get(login.getUsername(), MODULE, CONTEXT);
+			if ((!StringUtils.isEmpty(context)) && (context.equals(login.getContext())))
 			{
 				status = true;
 			}
@@ -58,9 +65,6 @@ public class LoginService
 	public Response login(Login login)
 	{
 		Timestamp logTime = new Timestamp(System.currentTimeMillis());
-
-		Login loginClone = (Login) ObjectUtils.clone(login);
-		loginClone.setPassword(null);
 
 		Response response = new Response();
 		response.setSuccessful(false);
@@ -82,6 +86,14 @@ public class LoginService
 				login.setPassword(null);
 				response.setSuccessful(true);
 				response.setResponseObject(login);
+
+				ServerCache serverCache = new ServerCache();
+				serverCache.setUsername(login.getUsername());
+				serverCache.setModule(MODULE);
+				serverCache.setKey(CONTEXT);
+				serverCache.setValue(login.getContext());
+
+				cacheService.add(login.getUsername(), serverCache);
 			}
 			else
 			{
@@ -100,6 +112,6 @@ public class LoginService
 
 	public void logout(String username)
 	{
-		loginDAO.deleteLoginLog(username);
+		cacheService.remove(username);
 	}
 }

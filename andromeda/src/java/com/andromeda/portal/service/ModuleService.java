@@ -31,4 +31,9 @@ public class ModuleService
 	{
 		return moduleDAO.getAll();
 	}
+
+	public List<Module> getSelectModules()
+	{
+		return moduleDAO.getSelectModules();
+	}
 }
