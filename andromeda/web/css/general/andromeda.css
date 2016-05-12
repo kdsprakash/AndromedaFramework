@@ -4,17 +4,94 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none; 
   margin: 0; 
 }
-
+.body
+{
+	background-color: #DBDBDB;
+}
+.header
+{
+	color: #FFFFFF;
+	width: 100%;
+	height: 50px;
+	padding: 5px;
+	background-color: #337ab7;
+	
+}
+.header-table td
+{
+	background-color: black;
+}
 .amdLink
 {
-	color: #0000FF;
+	color: white;
 	text-decoration: none;
 	cursor: pointer;
+	vertical-align: middle;
+	
 }
 
+.amd-logo-font
+{
+	color: yellow;
+	font-family: "Baskerville";
+	font-style: bold;
+	font-size: 40px;
+	width: 50px;
+	height: 50px;
+	margin-top: -10px;
+	padding-top:0.25px;
+	
+}
+
+.amd-header-title
+{
+	
+padding-top:5px;
+	padding-left: 90px;
+	
+	
+}
+.header-text
+{
+	vertical-align: middle;
+	font-family: "Arial";
+	font-style: bold;
+	font-size: 20px;
+	
+}
+.key-actions
+{
+	font-family: "verdana";
+	font-size: 16px;
+	font-style: bold;
+	margin: 0px;
+	padding-right:10px;
+	padding-top:2px;
+}
+.amd-header-actions
+{
+	font-family: "verdana";
+	font-size: 16px;
+	font-style: bold;
+	margin: 0px;
+	padding-right:10px;
+	padding-top:5px;
+	
+}
+.amd-menu-bar
+{
+	background-color: #CFE8FC;
+	height: 30px;
+	
+}
 .amdContainerDiv 
 {
 	background-color: #FFFFFF;
+}
+.wTag
+{
+	vertical-align: middle;
+	padding-top:10px;
 }
 
 .amdContainerDiv .amdHeader
@@ -50,14 +127,16 @@ input[type=number]::-webkit-outer-spin-button {
 	bottom: 0px;
 	width: 100%;
 	height: 40px;
-	background-color: #f5f5f5;
+	background-color: #DBDBDB;
 	padding: 10px;
-	border-top: 1px solid #e3e3e3;
+	border-top: 1px solid #DBDBDB;
 }
 
 .amdContainerDiv .amdContentDiv 
 {
 	padding: 10px;
+	background-color: #DBDBDB;
+	
 }
 
 .amdContainerDiv .amdContentDiv .amdContentHeading
@@ -94,6 +173,10 @@ input[type=number]::-webkit-outer-spin-button {
 	color: #ffffff;
 	padding: 5px;
 	border: 1px solid #337ab7;
+}
+.amdReportTable TH
+{
+	text-align: center;
 }
 		
 .amdContainerDiv .amdContentDiv .amdReportTable TR TD 
@@ -157,4 +240,14 @@ input[type=number]::-webkit-outer-spin-button {
 .amdContainerDiv .amdContentDiv .amdFormTable TR TD 
 {
 	padding: 5px;
+}
+.modal-header
+{
+	background-color:#337ab7;
+	 border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    -webkit-border-top-left-radius: 6px;
+    -webkit-border-top-right-radius: 6px;
+    -moz-border-radius-topleft: 6px;
+    -moz-border-radius-topright: 6px;
 }

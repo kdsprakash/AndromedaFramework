@@ -5,7 +5,7 @@ var AndromedaFormModule = angular.module('AndromedaFormModule', [])
 
 	$scope.login = function(user) 
 	{
-        $http.post('security/login', user)
+        $http.post('/andromeda/security/login', user)
         .then(function(response) 
         {
 			$scope.data = response.data;
@@ -25,4 +25,27 @@ var AndromedaFormModule = angular.module('AndromedaFormModule', [])
 			console.error('Error while fetching notes');
 		});
     };
+    
+    
+    $scope.save = function(url, formData)
+    {
+    	$http.post(url, formData)
+        .then(function(response) 
+        {
+			$scope.data = response.data;
+			if($scope.data.successful) 
+			{
+				Andromeda.showMessage($scope.data.message);
+			} 
+			else 
+			{
+				Andromeda.showError($scope.data.errorMessage);
+			}
+		}, 
+		function(errResponse) 
+		{
+			console.error('Error while fetching notes');
+		});
+    };
+    
 } ]);

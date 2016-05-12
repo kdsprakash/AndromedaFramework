@@ -15,6 +15,17 @@ public class Module extends BaseModel
 	private String description;
 	private String url;
 	private String testUrl;
+	private String imgUrl;
+
+	public String getImgUrl()
+	{
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl)
+	{
+		this.imgUrl = imgUrl;
+	}
 
 	public Integer getId()
 	{

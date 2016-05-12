@@ -1,5 +1,7 @@
 package com.andromeda.commons.util;
 
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -34,5 +36,12 @@ public class CryptoUtils
 		}
 
 		return passwordHash;
+	}
+
+	public static KeyPair generateKeys() throws Exception
+	{
+		KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
+		kpg.initialize(1024);
+		return kpg.generateKeyPair();
 	}
 }

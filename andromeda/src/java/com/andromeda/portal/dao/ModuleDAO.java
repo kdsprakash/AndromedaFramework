@@ -22,11 +22,39 @@ public class ModuleDAO extends BaseDAO
 	public List<Module> getAll()
 	{
 		Map<String, Object> params = new HashMap<>();
-
+		List<Module> modules = null;
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<Module> modules = sqlSession.selectList("Security.Module.GetAll", params);
-		sqlSession.close();
+		try
+		{
+			modules = sqlSession.selectList("Security.Module.GetAll", params);
+		}
+		catch (Exception e)
+		{
+		}
+		finally
+		{
+			sqlSession.close();
+		}
+		return modules;
+	}
 
+	public List<Module> getSelectModules()
+	{
+		// TODO Auto-generated method stub
+		Map<String, Object> params = new HashMap<>();
+		List<Module> modules = null;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try
+		{
+			modules = sqlSession.selectList("Security.Module.GetSelectModules", params);
+		}
+		catch (Exception e)
+		{
+		}
+		finally
+		{
+			sqlSession.close();
+		}
 		return modules;
 	}
 }
